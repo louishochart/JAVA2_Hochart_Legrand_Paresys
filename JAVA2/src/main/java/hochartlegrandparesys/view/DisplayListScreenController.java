@@ -6,14 +6,29 @@ import hochartlegrandparesys.daos.UserDao;
 import hochartlegrandparesys.models.User;
 import hochartlegrandparesys.service.StageService;
 import hochartlegrandparesys.service.ViewService;
+import isen.quiz.model.Question;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class DisplayListScreenController {
 	@FXML
 	private Button button_update;
 	@FXML 
 	private Button button_delete;
+	@FXML
+	private TableView<User> contactTable;
+	@FXML
+	private TableColumn<User,String> idColumn;
+	@FXML
+	private TableColumn<User,String> nicknameColumn;
+	@FXML
+	private TableColumn<User,String> firstnameColumn;
+	@FXML
+	private TableColumn<User,String> lastnameColumn;
+	@FXML
+	private TableColumn<User,String> phoneNumberColumn;
 	
 	UserDao user;
 	List<User> listUser;
