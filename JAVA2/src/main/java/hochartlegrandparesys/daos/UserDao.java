@@ -29,6 +29,7 @@ public class UserDao {
 						
 						listUsers.add(user);
 					}
+					connection.close();
 					return listUsers;
 				}
 			}
@@ -37,10 +38,10 @@ public class UserDao {
 		}
 	}
 	public User addUser(User user) {
-		try (Connection cnx = DataSourceFactory.getDataSource().getConnection()) {
+		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			// Here we pass an option to tell the DB that we want to get the
 			// generated keys back
-			try (PreparedStatement stmt = cnx.prepareStatement(
+			try (PreparedStatement stmt = connection.prepareStatement(
 					"INSERT INTO users(lastname,firstname,phone_number,address,email_address,login,password) "
 					+ "VALUES(?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS)) {
@@ -57,6 +58,7 @@ public class UserDao {
 				try (ResultSet keys = stmt.getGeneratedKeys()) {
 					keys.next();
 					user.setIdUser(keys.getInt(1));
+					connection.close();
 					return user;
 				}
 			}
@@ -65,5 +67,29 @@ public class UserDao {
 		}
 	}
 	
+	public void deleteUser(int index) {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users WHERE iduser=?")) {
+				statement.setInt(1, index+1);
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
+	
+	public void deleteAll() {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users")) {;
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
 	
 }

@@ -1,10 +1,15 @@
 package main.java.hochartlegrandparesys;
 
 
+import java.sql.Date;
+
+import hochartlegrandparesys.daos.ContactDao;
+import hochartlegrandparesys.daos.UserDao;
+import hochartlegrandparesys.models.Contact;
+import hochartlegrandparesys.models.User;
 import hochartlegrandparesys.service.StageService;
 import hochartlegrandparesys.service.ViewService;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public class App extends Application {

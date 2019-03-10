@@ -19,7 +19,15 @@ public class Contact extends Person {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	public Contact(String firstname, String lastname, String phoneNumber
+			, String address, String emailAddress
+			, String nickname, Date birthdate, long idUser) {
+		super(firstname, lastname, phoneNumber, address, emailAddress);
+		this.nickname = nickname;
+		this.birthdate = birthdate;
+		this.idUser = idUser;
+	}
+	
 	public Contact(String firstname, String lastname, String phoneNumber
 			, String address, String emailAddress,long idContact
 			, String nickname, Date birthdate, long idUser) {
@@ -66,5 +74,11 @@ public class Contact extends Person {
 	public void setIdUser(long idUser) {
 		this.idUser = idUser;
 	}
-
+	@Override
+	public String toString() {
+		return "Contact [idContact=" + idContact + ", idUser=" + idUser + ", nickname=" + nickname + ", birthdate="
+				+ birthdate + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

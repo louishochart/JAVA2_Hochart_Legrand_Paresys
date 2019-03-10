@@ -14,7 +14,8 @@ import hochartlegrandparesys.models.Contact;
 
 public class ContactDao {
 	
-	public List<Contact> listUsers(){
+	public List<Contact> listContacts(){
+		
 		List<Contact> listcontacts = new ArrayList<>();
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			try (Statement stmt = connection.createStatement()) {
@@ -29,6 +30,7 @@ public class ContactDao {
 						
 						listcontacts.add(contact);
 					}
+					connection.close();
 					return listcontacts;
 				}
 			}
@@ -37,11 +39,11 @@ public class ContactDao {
 		}
 	}
 	
-	public List<Contact> listContactsbyUserId(Long userId) {
+	public List<Contact> listContactsbyUserId(int userId) {
 		List<Contact> byUser = new ArrayList<Contact>();
-		try (Connection cnx = DataSourceFactory.getDataSource().getConnection()) {
-			try (PreparedStatement stmt = cnx.prepareStatement(
-					"SELECT * FROM contact  WHERE idusers.name = ?")) {
+		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
+			try (PreparedStatement stmt = connection.prepareStatement(
+					"SELECT * FROM contacts WHERE iduser = ?")) {
 				stmt.setLong(1, userId);
 				try (ResultSet results = stmt.executeQuery()) {
 					while (results.next()) {
@@ -52,6 +54,7 @@ public class ContactDao {
 								,results.getLong("idUser"));		
 						byUser.add(contact);
 					}
+					connection.close();
 					return byUser;
 				}
 			}
@@ -60,12 +63,12 @@ public class ContactDao {
 		}
 	}
 	public Contact addContact(Contact contact) {
-		try (Connection cnx = DataSourceFactory.getDataSource().getConnection()) {
+		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			// Here we pass an option to tell the DB that we want to get the
 			// generated keys back
-			try (PreparedStatement stmt = cnx.prepareStatement(
-					"INSERT INTO users(lastname,firstname,phone_number,address,email_address,birth_date,nickname,iduser) "
-							+ "VALUES(?,?,?,?,?,?,?)",
+			try (PreparedStatement stmt = connection.prepareStatement(
+					"INSERT INTO contacts(lastname,firstname,phone_number,address,email_address,birth_date,nickname,iduser) "
+							+ "VALUES(?,?,?,?,?,?,?,?)",
 				Statement.RETURN_GENERATED_KEYS)) 
 			{
 				stmt.setString(1,contact.getLastname());
@@ -81,10 +84,35 @@ public class ContactDao {
 				try (ResultSet keys = stmt.getGeneratedKeys()) {
 					keys.next();
 					contact.setIdContact(keys.getInt(1));
+					connection.close();
 					return contact;
 				}
 			}
 		} 
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
+	public void deleteContact(int index) {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM contacts WHERE idcontact=?")) {
+				statement.setInt(1, index+1);
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
+	
+	public void deleteAll() {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM contacts")) {;
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
 		catch (SQLException e) {
 			throw new RuntimeException("Oops", e);
 		}
