@@ -6,7 +6,6 @@ import hochartlegrandparesys.daos.UserDao;
 import hochartlegrandparesys.models.User;
 import hochartlegrandparesys.service.StageService;
 import hochartlegrandparesys.service.ViewService;
-import isen.quiz.model.Question;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -35,6 +34,11 @@ public class DisplayListScreenController {
 	
 	public DisplayListScreenController(){
 		this.listUser=user.listUsers();
+	}
+	
+	@FXML
+	private void refreshList(){
+		contactTable.refresh();
 	}
 	
 	public void updateContact(){
