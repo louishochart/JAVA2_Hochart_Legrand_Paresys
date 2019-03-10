@@ -14,8 +14,6 @@ public class ViewService {
 	private static FXMLLoader getLoader(String id) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			System.out.println(App.class.getClassLoader().getResource("hochartlegrandparesys/view/"+id+".fxml"));
-			
 			loader.setLocation(App.class.getClassLoader().getResource("hochartlegrandparesys/view/"+id+".fxml"));
 			
 			loader.load();

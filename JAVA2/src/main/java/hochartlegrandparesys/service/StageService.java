@@ -26,7 +26,7 @@ public class StageService {
 	}
 
 	public static void initPrimaryStage(Stage primaryStage) {
-		primaryStage.setTitle("ISEN Quiz");
+		primaryStage.setTitle("Contact App Project");
 		primaryStage.setScene(new Scene(StageServiceHolder.INSTANCE.mainLayout));
 		primaryStage.show();
 

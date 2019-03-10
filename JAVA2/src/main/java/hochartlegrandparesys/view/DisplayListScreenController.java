@@ -14,4 +14,8 @@ public class DisplayListScreenController {
 	public void updateContact(){
 		StageService.showView(ViewService.getView("HomeScreen"));
 	}
+	
+	public void deleteContact(){
+		
+	}
 }

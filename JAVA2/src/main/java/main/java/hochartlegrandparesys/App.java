@@ -16,7 +16,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		StageService.initPrimaryStage(primaryStage);
-		StageService.showView((Node) ViewService.getView("HomeScreen"));
+		StageService.showView(ViewService.getView("DisplayListScreen"));
 	}
 
 	public static void main(String[] args) {
