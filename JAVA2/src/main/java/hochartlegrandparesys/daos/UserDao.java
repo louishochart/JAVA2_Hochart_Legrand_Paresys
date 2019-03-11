@@ -14,8 +14,10 @@ import java.util.ArrayList;
 
 
 public class UserDao {
-
-	public List<User> listUsers(){
+	/**
+	 * @return a list with all users
+	 */
+	public static List<User> listUsers(){
 		List<User> listUsers = new ArrayList<>();
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			try (Statement stmt = connection.createStatement()) {
@@ -37,7 +39,10 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	public User addUser(User user) {
+	/**
+	 * add a user to the database
+	 */
+	public static User addUser(User user) {
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			// Here we pass an option to tell the DB that we want to get the
 			// generated keys back
@@ -66,11 +71,13 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	
-	public void deleteUser(int index) {
+	/**
+	 * delete a user depending of his iduser
+	 */
+	public static void deleteUser(int index) {
 		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
 			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users WHERE iduser=?")) {
-				statement.setInt(1, index+1);
+				statement.setInt(1, index);
 				statement.executeUpdate();
 			}
 			connection.close();
@@ -79,8 +86,10 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	
-	public void deleteAll() {
+	/**
+	 * delete all users
+	 */
+	public static void deleteAll() {
 		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
 			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users")) {;
 				statement.executeUpdate();

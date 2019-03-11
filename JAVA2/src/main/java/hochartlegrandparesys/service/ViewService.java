@@ -15,14 +15,12 @@ public class ViewService {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(App.class.getClassLoader().getResource("hochartlegrandparesys/view/"+id+".fxml"));
-			
 			loader.load();
 			return loader;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 }

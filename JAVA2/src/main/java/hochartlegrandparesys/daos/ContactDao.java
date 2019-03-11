@@ -13,9 +13,11 @@ import hochartlegrandparesys.models.Contact;
 
 
 public class ContactDao {
-	
-	public List<Contact> listContacts(){
-		
+
+	/**
+	 * @return a list with all contacts
+	 */
+	public static List<Contact> listContacts(){
 		List<Contact> listcontacts = new ArrayList<>();
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			try (Statement stmt = connection.createStatement()) {
@@ -38,8 +40,11 @@ public class ContactDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	
-	public List<Contact> listContactsbyUserId(int userId) {
+
+	/**
+	 * @return a list with all contacts linked with the given userId
+	 */
+	public static List<Contact> listContactsbyUserId(int userId) {
 		List<Contact> byUser = new ArrayList<Contact>();
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			try (PreparedStatement stmt = connection.prepareStatement(
@@ -62,7 +67,11 @@ public class ContactDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	public Contact addContact(Contact contact) {
+
+	/**
+	 * add a contact to the database
+	 */
+	public static Contact addContact(Contact contact) {
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			// Here we pass an option to tell the DB that we want to get the
 			// generated keys back
@@ -93,10 +102,14 @@ public class ContactDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	public void deleteContact(int index) {
+	
+	/**
+	 * delete a contact depending of his idcontact
+	 */
+	public static void deleteContact(int index) {
 		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
 			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM contacts WHERE idcontact=?")) {
-				statement.setInt(1, index+1);
+				statement.setInt(1, index);
 				statement.executeUpdate();
 			}
 			connection.close();
@@ -106,7 +119,10 @@ public class ContactDao {
 		}
 	}
 	
-	public void deleteAll() {
+	/**
+	 * delete all contacts
+	 */
+	public static void deleteAll() {
 		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
 			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM contacts")) {;
 				statement.executeUpdate();
