@@ -30,7 +30,7 @@ public class VCard {
 		if(!directory.exists()) {
 			directory.mkdir();
 		}
-		File f = new File(directoryName+contact.getFirstname()+" "+contact.getLastname()+".vcf");
+		File f = new File(directoryName+contact.getFirstname()+"_"+contact.getLastname()+".vcf");
 		if(!f.exists()) {
 			try {
 				f.createNewFile();
@@ -84,6 +84,7 @@ public class VCard {
 			for(File file : directory.listFiles()) {
 				file.delete();
 			}
+			System.out.println("VCards deleted");
 		}
 	}
 }

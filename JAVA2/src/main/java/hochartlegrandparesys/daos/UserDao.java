@@ -49,7 +49,8 @@ public class UserDao {
 			try (PreparedStatement stmt = connection.prepareStatement(
 					"INSERT INTO users(lastname,firstname,phone_number,address,email_address,login,password) "
 					+ "VALUES(?,?,?,?,?,?,?)",
-					Statement.RETURN_GENERATED_KEYS)) {
+				Statement.RETURN_GENERATED_KEYS)) 
+			{
 				stmt.setString(1, user.getLastname());
 				stmt.setString(2,user.getFirstname());
 				stmt.setString(3,user.getPhoneNumber());
@@ -57,7 +58,7 @@ public class UserDao {
 				stmt.setString(5,user.getEmailAddress());
 				stmt.setString(6,user.getUsername());
 				stmt.setString(7,user.getPassword());
-				
+					
 				stmt.executeUpdate();
 				// A little routine to grab the key and set it in our object
 				try (ResultSet keys = stmt.getGeneratedKeys()) {
