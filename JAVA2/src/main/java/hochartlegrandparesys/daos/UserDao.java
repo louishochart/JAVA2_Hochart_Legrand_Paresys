@@ -14,8 +14,10 @@ import java.util.ArrayList;
 
 
 public class UserDao {
-
-	public List<User> listUsers(){
+	/**
+	 * @return a list with all users
+	 */
+	public static List<User> listUsers(){
 		List<User> listUsers = new ArrayList<>();
 		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			try (Statement stmt = connection.createStatement()) {
@@ -29,6 +31,7 @@ public class UserDao {
 						
 						listUsers.add(user);
 					}
+					connection.close();
 					return listUsers;
 				}
 			}
@@ -36,11 +39,14 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	public User addUser(User user) {
-		try (Connection cnx = DataSourceFactory.getDataSource().getConnection()) {
+	/**
+	 * add a user to the database
+	 */
+	public static User addUser(User user) {
+		try (Connection connection = DataSourceFactory.getDataSource().getConnection()) {
 			// Here we pass an option to tell the DB that we want to get the
 			// generated keys back
-			try (PreparedStatement stmt = cnx.prepareStatement(
+			try (PreparedStatement stmt = connection.prepareStatement(
 					"INSERT INTO users(lastname,firstname,phone_number,address,email_address,login,password) "
 					+ "VALUES(?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS)) {
@@ -57,6 +63,7 @@ public class UserDao {
 				try (ResultSet keys = stmt.getGeneratedKeys()) {
 					keys.next();
 					user.setIdUser(keys.getInt(1));
+					connection.close();
 					return user;
 				}
 			}
@@ -64,6 +71,34 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
-	
+	/**
+	 * delete a user depending of his iduser
+	 */
+	public static void deleteUser(int index) {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users WHERE iduser=?")) {
+				statement.setInt(1, index);
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
+	/**
+	 * delete all users
+	 */
+	public static void deleteAll() {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement("DELETE FROM users")) {;
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
 	
 }

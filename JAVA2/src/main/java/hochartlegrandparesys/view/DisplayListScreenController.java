@@ -29,7 +29,7 @@ public class DisplayListScreenController {
 	@FXML
 	private TableColumn<User,String> phoneNumberColumn;
 	
-	UserDao user;
+	UserDao user = new UserDao();
 	List<User> listUser;
 	
 	public DisplayListScreenController(){
