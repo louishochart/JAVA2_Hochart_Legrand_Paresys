@@ -32,7 +32,8 @@ public class DisplayListScreenController {
 	UserDao user;
 	List<User> listUser;
 	
-	public DisplayListScreenController(){
+	@FXML
+	public void initialize(){
 		this.listUser=user.listUsers();
 	}
 	
@@ -41,6 +42,12 @@ public class DisplayListScreenController {
 		contactTable.refresh();
 	}
 	
+	@FXML
+	private void printContact(){
+		contactTable.setItems(this.listUser);
+	}
+	
+	@FXML
 	public void updateContact(){
 		StageService.showView(ViewService.getView("HomeScreen"));
 	}
