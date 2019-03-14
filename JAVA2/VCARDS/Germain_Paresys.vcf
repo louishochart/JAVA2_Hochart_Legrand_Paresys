@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Germain;Paresys;
+FN:Germain Paresys
+NICKNAME:zooph
+BDAY:2019-03-14
+ADR;TYPE=HOME:;;Lille
+TEL;TYPE=HOME;:0610800250
+EMAIL;TYPE=HOME;:germain.paresys@gmail.com
+END:VCARD

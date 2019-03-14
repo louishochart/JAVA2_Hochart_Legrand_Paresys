@@ -102,6 +102,30 @@ public class ContactDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
+	/**
+	 * update contact infos
+	 * @param idContact
+	 */
+	public static void updateContact(int idContact, Contact contact) {
+		try(Connection connection= DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement= connection.prepareStatement(
+					"UPDATE contacts SET lastname=?,firstname=?,phone_number=?,address=?,email_address=?,birth_date=?,nickname=? WHERE idcontact=?")) {
+				statement.setString(1, contact.getLastname());
+				statement.setString(2, contact.getFirstname());
+				statement.setString(3, contact.getPhoneNumber());
+				statement.setString(4, contact.getAddress());
+				statement.setString(5, contact.getEmailAddress());
+				statement.setDate(6, contact.getBirthdate());
+				statement.setString(7, contact.getNickname());
+				statement.setInt(8, idContact);
+				statement.executeUpdate();
+			}
+			connection.close();
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+	}
 	
 	/**
 	 * delete a contact depending of his idcontact

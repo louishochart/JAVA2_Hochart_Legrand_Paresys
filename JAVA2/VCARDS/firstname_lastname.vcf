@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:firstname;lastname;
+FN:firstname lastname
+NICKNAME:nickname
+BDAY:2000-10-09
+ADR;TYPE=HOME:;;10 rue test 59000 Lille
+TEL;TYPE=HOME;:0601020304
+EMAIL;TYPE=HOME;:test@test.fr
+END:VCARD
