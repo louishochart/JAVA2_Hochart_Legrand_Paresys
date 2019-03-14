@@ -7,6 +7,7 @@ import hochartlegrandparesys.daos.UserDao;
 import hochartlegrandparesys.models.*;
 import hochartlegrandparesys.service.*;
 import hochartlegrandparesys.util.*;
+import hochartlegrandparesys.utils.VCard;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -16,6 +17,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class DisplayListScreenController {
+	@FXML
+	private Button vcardContactButton;
+	@FXML
+	private Button vcardAllButton;
 	@FXML
 	private Button button_update;
 	@FXML 
@@ -33,7 +38,7 @@ public class DisplayListScreenController {
 	@FXML
 	private TableColumn<Contact,String> phoneNumberColumn;
 	@FXML
-	private Contact actualContact;
+	private static Contact actualContact;
 	
 	UserDao user = new UserDao();
 	List<User> listUser;
@@ -71,9 +76,13 @@ public class DisplayListScreenController {
 	public void addContact(){
 		StageService.showView(ViewService.getView("AddContactScreen"));
 	}
+	
+	@FXML
 	public void updateContact(){
 		StageService.showView(ViewService.getView("UpdateContactScreen"));
 	}
+	
+	@FXML
 	public void deleteContact(){
 		try{
 			ContactDao.deleteContact((int)actualContact.getIdContact());
@@ -83,5 +92,29 @@ public class DisplayListScreenController {
 		catch(Exception e){
 			System.err.println("error deleting the contact");
 		}
+	}
+	
+	@FXML
+	public void exportAllVcard(){
+		try{
+			VCard.exportAllVCards(ContactService.getContacts());
+		}
+		catch(Exception e){
+			System.err.println("error in exporting contact list to Vcard");
+		}
+	}
+	
+	@FXML 
+	public void exportContactToVcard(){
+		try{
+			VCard.exportVCard(actualContact);
+		}
+		catch(Exception e){
+			System.err.println("error in exporting this contact to Vcard");
+		}
+	}
+	
+	public static Contact getActualContact(){
+		return actualContact;
 	}
 }

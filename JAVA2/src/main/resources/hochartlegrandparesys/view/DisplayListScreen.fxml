@@ -27,5 +27,7 @@
       <Button fx:id="button_delete" layoutX="466.0" layoutY="337.0" mnemonicParsing="false" onAction="#deleteContact" prefHeight="35.0" prefWidth="128.0" text="Delete Contact" />
       <Button fx:id="button_update" layoutX="466.0" layoutY="286.0" mnemonicParsing="false" onAction="#updateContact" prefHeight="35.0" prefWidth="128.0" text="Update Contact" />
       <Button fx:id="addButton" layoutX="466.0" layoutY="236.0" mnemonicParsing="false" onAction="#addContact" prefHeight="35.0" prefWidth="128.0" text="Add Contact" />
+      <Button fx:id="vcardAllButton" layoutX="466.0" layoutY="58.0" mnemonicParsing="false" onAction="#exportAllVcard" prefHeight="35.0" prefWidth="128.0" text="export as Vcard" />
+      <Button fx:id="vcardContactButton" layoutX="466.0" layoutY="189.0" mnemonicParsing="false" onAction="#exportContactToVcard" prefHeight="35.0" prefWidth="128.0" text="Contact to Vcard" />
    </children>
 </AnchorPane>

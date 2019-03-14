@@ -30,7 +30,7 @@
             <Text layoutX="288.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="235.0" />
             <Text layoutX="288.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail address" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="285.0" />
             <Text layoutX="230.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthdate" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="335.0" />
-            <Button fx:id="confirmButton" layoutX="263.0" layoutY="403.0" mnemonicParsing="false" onAction="#saveContact" text="Update" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="400.0">
+            <Button fx:id="confirmButton" layoutX="263.0" layoutY="403.0" mnemonicParsing="false" onAction="#updateContact" text="Update" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font size="14.0" />
                </font>

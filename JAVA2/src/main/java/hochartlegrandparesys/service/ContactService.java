@@ -34,6 +34,10 @@ public class ContactService {
 	public static void deleteContact(Contact contact){
 		ContactServiceHolder.INSTANCE.contacts.remove(contact);
 	}
+	public static void updateContact(Contact oldContact, Contact newContact){
+		ContactServiceHolder.INSTANCE.contacts.remove(oldContact);
+		ContactServiceHolder.INSTANCE.contacts.add(newContact);
+	}
 	private static class ContactServiceHolder {
 		private static final ContactService INSTANCE = new ContactService();
 	}
