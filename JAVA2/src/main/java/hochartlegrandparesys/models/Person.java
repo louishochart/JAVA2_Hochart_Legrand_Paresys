@@ -56,6 +56,11 @@ public class Person {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+	@Override
+	public String toString() {
+		return "Person [firstname=" + firstname + ", lastname=" + lastname + ", phoneNumber=" + phoneNumber
+				+ ", address=" + address + ", emailAddress=" + emailAddress + "]";
+	}
 	
 	
 	

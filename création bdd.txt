@@ -1,0 +1,34 @@
+Création de la base de donnée :
+
+- nommer la nouvelle base de donnée : "projetjava2"
+
+contacts :
+"
+CREATE TABLE `contacts` (
+ `idcontact` int(11) NOT NULL AUTO_INCREMENT,
+ `lastname` varchar(45) NOT NULL,
+ `firstname` varchar(45) NOT NULL,
+ `phone_number` varchar(15) DEFAULT NULL,
+ `address` varchar(200) DEFAULT NULL,
+ `email_address` varchar(150) DEFAULT NULL,
+ `birth_date` date DEFAULT NULL,
+ `nickname` varchar(45) NOT NULL,
+ `iduser` int(11) NOT NULL,
+ PRIMARY KEY (`idcontact`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+"
+
+users : 
+"
+CREATE TABLE `users` (
+ `iduser` int(11) NOT NULL AUTO_INCREMENT,
+ `lastname` varchar(45) NOT NULL,
+ `firstname` varchar(45) NOT NULL,
+ `phone_number` varchar(15) DEFAULT NULL,
+ `address` varchar(200) DEFAULT NULL,
+ `email_address` varchar(150) DEFAULT NULL,
+ `login` varchar(45) NOT NULL,
+ `password` varchar(45) NOT NULL,
+ PRIMARY KEY (`iduser`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+"
