@@ -3,14 +3,12 @@ package hochartlegrandparesys.view;
 import java.util.List;
 
 import hochartlegrandparesys.daos.UserDao;
-import hochartlegrandparesys.models.Contact;
-import hochartlegrandparesys.models.User;
-import hochartlegrandparesys.service.ContactService;
-import hochartlegrandparesys.service.StageService;
-import hochartlegrandparesys.service.ViewService;
-import hochartlegrandparesys.util.NicknameValueFactory;
+import hochartlegrandparesys.models.*;
+import hochartlegrandparesys.service.*;
+import hochartlegrandparesys.util.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -39,9 +37,11 @@ public class DisplayListScreenController {
 	
 	@FXML
 	public void initialize(){
-		//this.listUser=user.listUsers();
 		this.nicknameColumn.setCellValueFactory(new NicknameValueFactory());
-		
+		this.firstnameColumn.setCellValueFactory(new FirstnameValueFactory());
+		this.lastnameColumn.setCellValueFactory(new LastnameValueFactory());
+		this.phoneNumberColumn.setCellValueFactory(new PhoneNumberValueFactory());
+		this.populateList();
 		this.contactTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Contact>(){
 			@Override
 			public void changed(ObservableValue<? extends Contact> observable, Contact oldContact, Contact newContact) {
@@ -59,6 +59,7 @@ public class DisplayListScreenController {
 	
 	@FXML
 	private void populateList(){
+		ObservableList<Contact> listeContact = ContactService.getContacts();
 		contactTable.setItems(ContactService.getContacts());
 		this.refreshList();
 	}

@@ -11,7 +11,7 @@ import hochartlegrandparesys.models.Contact;
 import hochartlegrandparesys.models.User;
 import hochartlegrandparesys.service.StageService;
 import hochartlegrandparesys.service.ViewService;
-//import hochartlegrandparesys.utils.VCard;
+import hochartlegrandparesys.utils.VCard;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -14,7 +14,6 @@
                <children>
                   <TableView fx:id="contactTable" layoutX="-2.0" prefHeight="377.0" prefWidth="443.0">
                     <columns>
-                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="N°" />
                       <TableColumn fx:id="nicknameColumn" prefWidth="75.0" text="Nickname" />
                         <TableColumn fx:id="firstnameColumn" prefWidth="75.0" text="Firstname" />
                         <TableColumn fx:id="lastnameColumn" prefWidth="69.99995422363281" text="Lastname" />
