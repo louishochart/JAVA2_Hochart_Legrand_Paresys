@@ -2,6 +2,7 @@ package hochartlegrandparesys.view;
 
 import java.util.List;
 
+import hochartlegrandparesys.daos.ContactDao;
 import hochartlegrandparesys.daos.UserDao;
 import hochartlegrandparesys.models.*;
 import hochartlegrandparesys.service.*;
@@ -31,6 +32,8 @@ public class DisplayListScreenController {
 	private TableColumn<Contact,String> lastnameColumn;
 	@FXML
 	private TableColumn<Contact,String> phoneNumberColumn;
+	@FXML
+	private Contact actualContact;
 	
 	UserDao user = new UserDao();
 	List<User> listUser;
@@ -45,7 +48,7 @@ public class DisplayListScreenController {
 		this.contactTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Contact>(){
 			@Override
 			public void changed(ObservableValue<? extends Contact> observable, Contact oldContact, Contact newContact) {
-				//showQuestionDetails(newContact);
+				actualContact=newContact;
 			}
 		});
 		
@@ -65,11 +68,20 @@ public class DisplayListScreenController {
 	}
 	
 	@FXML
-	public void updateContact(){
-		StageService.showView(ViewService.getView("HomeScreen"));
+	public void addContact(){
+		StageService.showView(ViewService.getView("AddContactScreen"));
 	}
-	
+	public void updateContact(){
+		StageService.showView(ViewService.getView("UpdateContactScreen"));
+	}
 	public void deleteContact(){
-		
+		try{
+			ContactDao.deleteContact((int)actualContact.getIdContact());
+			ContactService.deleteContact(actualContact);
+			System.out.println("contact deleted");
+		}
+		catch(Exception e){
+			System.err.println("error deleting the contact");
+		}
 	}
 }
