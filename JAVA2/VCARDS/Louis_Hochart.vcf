@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Louis;Hochart;
+FN:Louis Hochart
+NICKNAME:Clochard
+BDAY:1996-10-07
+ADR;TYPE=HOME:;;53 rue Norbert Segard 59910 Bondues
+TEL;TYPE=HOME;:0615162575
+EMAIL;TYPE=HOME;:louis.hochart@isen.yncrea.fr
+END:VCARD

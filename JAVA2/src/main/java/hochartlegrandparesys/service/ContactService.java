@@ -12,17 +12,16 @@ import hochartlegrandparesys.models.Contact;
 public class ContactService {
 
 	private ObservableList<Contact> contacts;
-	public int userID;
+	public int userId;
 	
 	private ContactService(){
-		userID=1;
+		userId=1;
 		contacts = FXCollections.observableArrayList();
 		long millis=System.currentTimeMillis();  
-        java.sql.Date date=new java.sql.Date(millis);  
-		contacts.add(new Contact("Germain","Paresys", "0610800250"
-				, "Lille","germain.paresys@gmail.com"
-				, "zooph",date, 9));
-		//contacts = (ObservableList<Contact>)ContactDao.listContactsbyUserId(userID);
+        java.sql.Date date=new java.sql.Date(millis); 
+        for(Contact contact : ContactDao.listContactsbyUserId(userId)) {
+        	contacts.add(contact);
+        }
 	}
 	
 	public static ObservableList<Contact> getContacts() {

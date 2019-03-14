@@ -6,28 +6,28 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hochartlegrandparesys.view.DisplayListScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="751.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hochartlegrandparesys.view.DisplayListScreenController">
    <children>
       <ScrollPane layoutX="14.0" layoutY="12.0" prefHeight="377.0" prefWidth="443.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="375.0" prefWidth="441.0">
                <children>
-                  <TableView fx:id="contactTable" layoutX="-2.0" prefHeight="377.0" prefWidth="443.0">
+                  <TableView fx:id="contactTable" layoutX="-2.0" prefHeight="378.0" prefWidth="469.0">
                     <columns>
-                      <TableColumn fx:id="nicknameColumn" prefWidth="75.0" text="Nickname" />
-                        <TableColumn fx:id="firstnameColumn" prefWidth="75.0" text="Firstname" />
-                        <TableColumn fx:id="lastnameColumn" prefWidth="69.99995422363281" text="Lastname" />
-                        <TableColumn fx:id="phoneNumberColumn" prefWidth="146.00006103515625" text="Phone number" />
+                      <TableColumn fx:id="nicknameColumn" prefWidth="104.7999849319458" text="Nickname" />
+                        <TableColumn fx:id="firstnameColumn" prefWidth="100.00006103515625" text="Firstname" />
+                        <TableColumn fx:id="lastnameColumn" prefWidth="114.40003967285156" text="Lastname" />
+                        <TableColumn fx:id="phoneNumberColumn" prefWidth="108.79998779296875" text="Phone number" />
                     </columns>
                   </TableView>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button fx:id="button_delete" layoutX="466.0" layoutY="337.0" mnemonicParsing="false" onAction="#deleteContact" prefHeight="35.0" prefWidth="128.0" text="Delete Contact" />
-      <Button fx:id="button_update" layoutX="466.0" layoutY="286.0" mnemonicParsing="false" onAction="#updateContact" prefHeight="35.0" prefWidth="128.0" text="Update Contact" />
-      <Button fx:id="addButton" layoutX="466.0" layoutY="236.0" mnemonicParsing="false" onAction="#addContact" prefHeight="35.0" prefWidth="128.0" text="Add Contact" />
-      <Button fx:id="vcardAllButton" layoutX="466.0" layoutY="58.0" mnemonicParsing="false" onAction="#exportAllVcard" prefHeight="35.0" prefWidth="128.0" text="export as Vcard" />
-      <Button fx:id="vcardContactButton" layoutX="466.0" layoutY="189.0" mnemonicParsing="false" onAction="#exportContactToVcard" prefHeight="35.0" prefWidth="128.0" text="Contact to Vcard" />
+      <Button fx:id="button_delete" layoutX="496.0" layoutY="336.0" mnemonicParsing="false" onAction="#deleteContact" prefHeight="35.0" prefWidth="208.0" text="Delete Contact" />
+      <Button fx:id="button_update" layoutX="496.0" layoutY="286.0" mnemonicParsing="false" onAction="#updateContact" prefHeight="35.0" prefWidth="208.0" text="Update Contact" />
+      <Button fx:id="addButton" layoutX="496.0" layoutY="237.0" mnemonicParsing="false" onAction="#addContact" prefHeight="35.0" prefWidth="208.0" text="Add Contact" />
+      <Button fx:id="vcardAllButton" layoutX="496.0" layoutY="59.0" mnemonicParsing="false" onAction="#exportAllVcard" prefHeight="35.0" prefWidth="208.0" text="Export all contacts to VCard" />
+      <Button fx:id="vcardContactButton" layoutX="496.0" layoutY="183.0" mnemonicParsing="false" onAction="#exportContactToVcard" prefHeight="35.0" prefWidth="208.0" text="Export selected contact to VCard" />
    </children>
 </AnchorPane>
