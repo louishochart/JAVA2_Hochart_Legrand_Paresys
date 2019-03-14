@@ -7,7 +7,7 @@ import java.sql.Date;
 
 import hochartlegrandparesys.daos.ContactDao;
 import hochartlegrandparesys.models.Contact;
-import java.sql.Date;
+
 
 public class ContactService {
 
@@ -27,6 +27,12 @@ public class ContactService {
 	
 	public static ObservableList<Contact> getContacts() {
 		return ContactServiceHolder.INSTANCE.contacts;
+	}
+	public static void addContact(Contact newContact) {
+		ContactServiceHolder.INSTANCE.contacts.add(newContact);
+	}
+	public static void deleteContact(Contact contact){
+		ContactServiceHolder.INSTANCE.contacts.remove(contact);
 	}
 	private static class ContactServiceHolder {
 		private static final ContactService INSTANCE = new ContactService();
