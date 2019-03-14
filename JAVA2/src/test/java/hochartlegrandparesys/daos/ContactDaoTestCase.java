@@ -16,7 +16,9 @@ import org.junit.Test;
 import hochartlegrandparesys.models.Contact;
 
 public class ContactDaoTestCase {
-	int index;
+	
+	int index1;
+	int index2;
 
 	@Before
 	public void initDb() throws SQLException {
@@ -33,10 +35,13 @@ public class ContactDaoTestCase {
 		
 		PreparedStatement stmt3 = connection.prepareStatement(
 				"INSERT INTO contacts(lastname,firstname,phone_number,address,email_address,birth_date,nickname,iduser) "
-						+ "VALUES(?,?,?,?,?,?,?,?)");
+						+ "VALUES(?,?,?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
 		stmt3.setString(1, "lastname1");stmt3.setString(2, "firstname1");stmt3.setString(3, "phone1");stmt3.setString(4, "address1");stmt3.setString(5, "email1");stmt3.setDate(6, Date.valueOf("1000-10-10"));stmt3.setString(7, "nick1");
 		stmt3.setLong(8, 2);
 		stmt3.execute();
+		ResultSet keys1 = stmt3.getGeneratedKeys();
+		keys1.next();
+		index1 = keys1.getInt(1);
 		
 		
 		PreparedStatement stmt4 = connection.prepareStatement(
@@ -46,9 +51,9 @@ public class ContactDaoTestCase {
 		stmt4.setString(1, "lastname3");stmt4.setString(2, "firstname3");stmt4.setString(3, "phone3");stmt4.setString(4, "address3");stmt4.setString(5, "email3");stmt4.setDate(6, Date.valueOf("1000-10-10"));stmt4.setString(7, "nick3");
 		stmt4.setLong(8, 3);
 		stmt4.execute();
-		ResultSet keys = stmt4.getGeneratedKeys();
-		keys.next();
-		index = keys.getInt(1);
+		ResultSet keys2 = stmt4.getGeneratedKeys();
+		keys2.next();
+		index2 = keys2.getInt(1);
 
 		stmt4.close();
 		stmt1.close();
@@ -79,7 +84,7 @@ public class ContactDaoTestCase {
 	}
 	
 	@Test
-	public void shouldAddUser() throws Exception {
+	public void shouldAddContact() throws Exception {
 		// GIVEN we have a Contact DAO ready to take orders and a contact to add
 		Contact contact = new Contact("firstname", "lastname", "phone", "address", "email", "nick",
 				Date.valueOf("1000-10-10"), 4);
@@ -124,10 +129,10 @@ public class ContactDaoTestCase {
 
 	@Test
 	public void shouldDeleteUser() throws Exception {
-		ContactDao.deleteContact(index);
+		ContactDao.deleteContact(index2);
 		Connection connection = DataSourceFactory.getDataSource().getConnection();
 		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery("SELECT * FROM contacts WHERE idcontact=" + index);
+		ResultSet resultSet = statement.executeQuery("SELECT * FROM contacts WHERE idcontact=" + index2);
 		assertThat(resultSet.next()).isFalse();
 	}
 
@@ -138,5 +143,25 @@ public class ContactDaoTestCase {
 		Statement statement = connection.createStatement();
 		ResultSet resultSet = statement.executeQuery("SELECT * FROM contacts");
 		assertThat(resultSet.next()).isFalse();
+	}
+	
+	@Test
+	public void shouldUpdateContact() throws SQLException {
+		Contact contact = new Contact("updtfirstname", "updtlastname", "updtphone", "updtaddress", "updtemail", "updtnick",
+				Date.valueOf("2000-10-10"), 2);
+		ContactDao.updateContact(index1, contact);
+		Connection connection = DataSourceFactory.getDataSource().getConnection();
+		Statement statement = connection.createStatement();
+		ResultSet resultSet = statement.executeQuery("SELECT * FROM contacts WHERE idcontact="+index1);
+		assertThat(resultSet.next()).isTrue();
+		assertThat(resultSet.getInt("iduser")).isNotNull();
+		assertThat(resultSet.getString("firstname")).isEqualTo("updtfirstname");
+		assertThat(resultSet.getString("lastname")).isEqualTo("updtlastname");
+		assertThat(resultSet.getString("phone_number")).isEqualTo("updtphone");
+		assertThat(resultSet.getString("address")).isEqualTo("updtaddress");
+		assertThat(resultSet.getString("email_address")).isEqualTo("updtemail");
+		assertThat(resultSet.getString("nickname")).isEqualTo("updtnick");
+		assertThat(resultSet.getDate("birth_date")).isEqualTo(Date.valueOf("2000-10-10"));
+		assertThat(resultSet.getLong("iduser")).isEqualTo(2);
 	}
 }
