@@ -101,5 +101,36 @@ public class UserDao {
 			throw new RuntimeException("Oops", e);
 		}
 	}
+	/**
+	 * get an user with his username
+	 */
+	public static User getUserByUsername(String username) {
+		User user = new User();
+		try(Connection connection = DataSourceFactory.getDataSource().getConnection()) {
+			try(PreparedStatement statement = connection.prepareStatement(
+					"SELECT * FROM users WHERE login=?")){
+				statement.setString(1, username);
+				System.out.println("PreparedStatement is ok");
+				try(ResultSet result = statement.executeQuery()){
+					result.next();
+					user.setFirstname(result.getString("firstname"));
+					user.setLastname(result.getString("lastname"));
+					user.setUsername(result.getString("login"));
+					user.setPassword(result.getString("password"));
+					user.setPhoneNumber(result.getString("phone_number"));
+					user.setAddress(result.getString("address"));
+					user.setEmailAddress(result.getString("email_address"));
+					user.setIdUser(result.getLong("iduser"));
+					
+					connection.close();
+				}
+			}
+		}
+		catch(SQLException e) {
+			throw new RuntimeException("Oops", e);
+		}
+		
+		return user;
+	}
 	
 }

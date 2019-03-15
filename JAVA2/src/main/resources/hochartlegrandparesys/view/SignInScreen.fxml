@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500" prefWidth="600.0" text="AddContactScreen" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500" prefWidth="600.0" text="SignInScreen" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hochartlegrandparesys.view.SignInScreenController">
    <content>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -17,13 +17,13 @@
                   <Font name="System Bold" size="28.0" />
                </font>
             </Text>
-            <TextField layoutX="225.0" layoutY="74.0" promptText="Paresys" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="53.0" />
-            <TextField layoutX="225.0" layoutY="124.0" promptText="germain" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="103.0" />
-            <TextField layoutX="225.0" layoutY="177.0" promptText="Zooph" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="153.0" />
-            <PasswordField layoutX="225.0" layoutY="226.0" promptText="password" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="203.0" />
-            <TextField layoutX="225.0" layoutY="275.0" promptText="0686146374" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="253.0" />
-            <TextField layoutX="225.0" layoutY="321.0" promptText="Algerbob" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="303.0" />
-            <TextField layoutX="215.0" layoutY="347.0" promptText="germain.paresys@isen.yncrea.fr" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="353.0" />
+            <TextField fx:id="lastnameTextField" layoutX="225.0" layoutY="74.0" promptText="Paresys" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="53.0" />
+            <TextField fx:id="firstnameTextField" layoutX="225.0" layoutY="124.0" promptText="germain" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="103.0" />
+            <TextField fx:id="usernameTextField" layoutX="225.0" layoutY="177.0" promptText="Zooph" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="153.0" />
+            <PasswordField fx:id="passwordPasswordField" layoutX="225.0" layoutY="226.0" promptText="password" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="203.0" />
+            <TextField fx:id="phoneNumberTextField" layoutX="225.0" layoutY="275.0" promptText="0686146374" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="253.0" />
+            <TextField fx:id="addressTextField" layoutX="225.0" layoutY="321.0" promptText="Algerbob" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="303.0" />
+            <TextField fx:id="mailTextField" layoutX="215.0" layoutY="347.0" promptText="germain.paresys@isen.yncrea.fr" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="353.0" />
             <Text layoutX="288.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="35.0" />
             <Text layoutX="288.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="85.0" />
             <Text layoutX="288.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="135.0" />
@@ -31,11 +31,11 @@
             <Text layoutX="288.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="235.0" />
             <Text layoutX="288.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="285.0" />
             <Text layoutX="230.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail address" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="335.0" />
-            <Button layoutX="263.0" layoutY="403.0" mnemonicParsing="false" text="Add" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="400.0">
+            <Button fx:id="confirmButton" layoutX="263.0" layoutY="403.0" mnemonicParsing="false" onAction="#saveUser" text="Save" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Button layoutX="514.0" layoutY="425.0" mnemonicParsing="false" text="HomeScreen" textFill="#2ca9c5" underline="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="400.0">
+            <Button fx:id="loginButton" layoutX="514.0" layoutY="425.0" mnemonicParsing="false" onAction="#goToHomeScreen" text="Login" textFill="#2ca9c5" underline="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font size="14.0" />
                </font></Button>
